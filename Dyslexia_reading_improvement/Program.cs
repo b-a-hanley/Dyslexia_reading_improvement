@@ -8,7 +8,7 @@ namespace Dyslexia_reading_improvement
         {
             Console.WriteLine("Welcome to the dyslexia reading improvement system \n************************************************** ");
             Thread.Sleep(500);
-            Console.WriteLine("I'm your host Bennington Andrew and heres the instructions..");
+            Console.WriteLine("I'm your host Bennington and heres the instructions..");
             Thread.Sleep(500);
             Console.WriteLine("You will be given a word and you guess it");
             sbyte points = 5;
@@ -104,6 +104,8 @@ namespace Dyslexia_reading_improvement
                     Thread.Sleep(300);
                     Console.WriteLine($"\nScore={score}\nLevel={level}\n");
 
+                    score = 0;
+                    level = 1;
                     Console.WriteLine($"\nPlay again? (y/n) or for highscores type 'h'");
                     playagain=Console.ReadLine();
                      
