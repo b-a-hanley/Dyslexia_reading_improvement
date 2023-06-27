@@ -27,6 +27,7 @@ namespace Dyslexia_reading_improvement
             //third time correct = 1 point
             //any time wrong = 0 points
             //makes an array of words
+
             //random number generator 
             string playagain = ("y");
             game(words);
@@ -89,7 +90,7 @@ namespace Dyslexia_reading_improvement
                     string response = Console.ReadLine().ToUpper().Trim();
                     string ClueCut(string clue)
                     {
-                        string[] array = clue.ToUpper().Trim().Split("CLUE");
+                        string[] array = clue.Split("CLUE");
                         try
                         { return array[1]; }
                         catch
@@ -97,28 +98,28 @@ namespace Dyslexia_reading_improvement
                     }
                     string clue = ClueCut(response);
                     while (response != clue)
-                    {
+                    {   
                         response = ClueCut(response);
 
-                        if ((clue == "1") && (points == 5))
+                        if (clue == "1") 
                         {
                             Console.WriteLine(word[0].ToString() + word[1].ToString() + randchar(word.Length - 3).ToString() + word[word.Length - 1].ToString());
-                            response = Console.ReadLine();
+                            response = Console.ReadLine().ToUpper().Trim();
                             clue = ClueCut(response);
 
                             points = 3;
                         }
-                        else if ((clue == "2") && (points > 2))
+                        else if (clue == "2") 
                         {
                             Console.WriteLine(word[0].ToString() + word[1].ToString() + randchar(word.Length - 4).ToString() + word[word.Length - 2].ToString() + word[word.Length - 1].ToString());
-                            response = Console.ReadLine();
+                            response = Console.ReadLine().ToUpper().Trim();
                             clue = ClueCut(response);
                             points = 2;
                         }
-                        else if ((clue == "3") && (points > 1))
+                        else if (clue == "3")
                         {
                             Console.WriteLine(word[0].ToString() + word[1].ToString() + word[2].ToString() + randchar(word.Length - 5).ToString() + word[word.Length - 2].ToString() + word[word.Length - 1].ToString());
-                            response = Console.ReadLine();
+                            response = Console.ReadLine().ToUpper().Trim();
                             clue = ClueCut(response);
                             points = 1;
                             break;
@@ -138,6 +139,7 @@ namespace Dyslexia_reading_improvement
                     else
                     {
                         Console.WriteLine($"The word was {word}\nYou lost all your points :(");
+                        Console.WriteLine($"{response}");
                         Console.Write($"\nYour final score was");
                         for (int i = 0; i < 3; i++)
                         {
