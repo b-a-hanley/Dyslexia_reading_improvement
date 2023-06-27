@@ -13,23 +13,37 @@ namespace Dyslexia_reading_improvement
         static void Main(string[] args)
         {
             Random rnd = new Random();
+            //random number generator 
+
             Console.WriteLine("Welcome to the HyperLexic \n************************************************** ");
             Thread.Sleep(500);
-            Console.WriteLine("I'm your host Bennington and heres the instructions..");
-            Thread.Sleep(500);
+            Console.WriteLine("I'm your host Bennington and would you like to hear how to play? (y/n)");
+            if (Console.ReadLine() == "y")
+            {
+                Console.WriteLine("The aim of the game is to guess the word hidden infront of you. You will be given a word which will start and end with the real letters which will be capitalised");
+                Thread.Sleep(1500);
+                Console.WriteLine("You can request clues by typing: clue1, clue2, clue3. These progressively make it easier to guess the word. However these will cost you points that can be earnt each round");
+                Thread.Sleep(1500);
+                Console.WriteLine("Word correct with No clues = 5 points");
+                Thread.Sleep(100);
+                Console.WriteLine("Word correct with Clue1 = 3 points");
+                Thread.Sleep(100);
+                Console.WriteLine("Word correct with Clue2 = 2 points");
+                Thread.Sleep(100);
+                Console.WriteLine("Word correct with Clue3 = 1 points");
+                Thread.Sleep(300);
+                Console.WriteLine("Get the word wrong you lose the game");
+            }
+
+            Thread.Sleep(300);
             Console.WriteLine("You will be given a word and you guess it");
             sbyte points = 5;
             int score = 0;
             int level = 1;
-            string[] words = loadDictionary();
-            //first time correct = 5 points
-            //second tim e correct = 3 points 
-            //third time correct = 1 point
-            //any time wrong = 0 points
-            //makes an array of words
+            List<string> words = loadDictionary();
+            
 
-            //random number generator 
-            string playagain = ("y");
+                        string playagain = ("y");
             game(words);
             while (playagain != "n")
             {
@@ -66,19 +80,29 @@ namespace Dyslexia_reading_improvement
             {
 
             }
-            string[] loadDictionary()
+            List<string> loadDictionary()
             {
                 string filePath = "google-10000-english.txt";
-                return File.ReadAllLines(filePath);//reads file location and splits and stores in an array of lines 
+                string[] dictionary= File.ReadAllLines(filePath);//reads file location and splits and stores in an array of lines 
+                var wordList = new List<string>();
+                for (int i = 0; i < dictionary.Length; i++)
+                {
+                    if (dictionary[i].Length > 5)
+                    {
+                        wordList.Add(dictionary[i]);
+                    }
+                    
+                }
+                return wordList;
             }
             
-            void game(string[] words)
+            void game(List<string> words)
             {
                 bool gamestate = true;
                 while (gamestate)
                 {
                     points = 5;
-                    string word = words[rnd.Next(words.Length - 1)].ToUpper();
+                    string word = words[rnd.Next(words.Count - 1)].ToUpper();
                     string randchar(int len)
                     {
                         string str = "";
