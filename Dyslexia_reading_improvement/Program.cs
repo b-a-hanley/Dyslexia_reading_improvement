@@ -1,11 +1,18 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Text;
+using System.IO;
+using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+
 namespace Dyslexia_reading_improvement
 {
     class Program
     {
         static void Main(string[] args)
         {
+            Random rnd = new Random();
             Console.WriteLine("Welcome to the HyperLexic \n************************************************** ");
             Thread.Sleep(500);
             Console.WriteLine("I'm your host Bennington and heres the instructions..");
@@ -14,15 +21,15 @@ namespace Dyslexia_reading_improvement
             sbyte points = 5;
             int score = 0;
             int level = 1;
+            string[] words = loadDictionary();
             //first time correct = 5 points
             //second tim e correct = 3 points 
             //third time correct = 1 point
             //any time wrong = 0 points
             //makes an array of words
-
             //random number generator 
             string playagain = ("y");
-            game();
+            game(words);
             while (playagain != "n")
             {
                 Console.WriteLine($"\nPlay again? (y/n) or for highscores type 'h'");
@@ -30,12 +37,12 @@ namespace Dyslexia_reading_improvement
                 switch (playagain)
                 {
                     case "y":
-                        game();
+                        game(words);
                         break;
                     case "yes":
-                        game();
+                        game(words);
                         break;
-                    case "highscore":
+                    case "highscores":
                         highscore();
                         break;
                     case "h":
@@ -49,27 +56,27 @@ namespace Dyslexia_reading_improvement
                             Console.Write(".");
                         }
                         Thread.Sleep(500);
-                        Console.WriteLine(" HyperLexic!");
-                       
-                        
+                        Console.WriteLine(" HyperLexic!");                        
                         Environment.Exit(0);
                         break;
                 }
-                
             }
             void highscore()
             {
 
             }
-            void game()
+            string[] loadDictionary()
+            {
+                string filePath = "google-10000-english.txt";
+                return File.ReadAllLines(filePath);//reads file location and splits and stores in an array of lines 
+            }
+            
+            void game(string[] words)
             {
                 bool gamestate = true;
                 while (gamestate)
                 {
                     points = 5;
-
-                    string[] words = { "birch", "because", "brilliant", "jamaican", "cordroy", "lemon", "trickled", "impeach", "establish", "configure", "number", "monosyllabic" };
-                    Random rnd = new Random();
                     string word = words[rnd.Next(words.Length - 1)].ToUpper();
                     string randchar(int len)
                     {
@@ -136,14 +143,13 @@ namespace Dyslexia_reading_improvement
                         {
                             Thread.Sleep(300);
                             Console.Write(".");
-                        }
+                        }     
                         Thread.Sleep(300);
                         Console.WriteLine($"\nScore={score}\nLevel={level}\n");
 
                         score = 0;
                         level = 1;
                         gamestate = false;
-
                     }
                 }
             }
