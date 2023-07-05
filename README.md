@@ -11,10 +11,10 @@ Dyslexia_reading_improvement is a training environment designed to assist dyslex
 **Requesting clues:** You can request clues to help you guess the word. Type "clue1" for the first clue, "clue2" for the second clue, or "clue3" for the third clue. These clues progressively make it easier to guess the word.
 
 **Scoring system:**
-        Guessing the word correctly without any clues earns you 5 points.
-        Guessing correctly with clue1 earns 3 points.
-        Guessing correctly with clue2 earns 2 points.
-        Guessing correctly with clue3 earns 1 point.
+- Guessing the word correctly without any clues earns you 5 points.
+- Guessing correctly with clue1 earns 3 points.
+- Guessing correctly with clue2 earns 2 points.
+- Guessing correctly with clue3 earns 1 point.
 
 **Gameplay:** Be careful! Guessing the word incorrectly will result in losing the game. Take your time and consider your guess carefully before submitting it.
 
